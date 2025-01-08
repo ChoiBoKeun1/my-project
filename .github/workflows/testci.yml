@@ -5,7 +5,7 @@ name: CI with Gradle
 # main 브랜치에 PR 이벤트가 발생하면 Workflow가 실행된다.
 # 브랜치 구분이 없으면 on: [pull_request]로 해주어도 된다.
 on:
-  push:
+  push: # push 로 변경함.
     branches: [ "main" ]
 
 # 테스트 결과 작성을 위해 쓰기권한 추가
@@ -31,7 +31,9 @@ jobs:
         touch ./application-database.yaml
 
         # GitHub-Actions 에서 설정한 값을 application-database.yaml 파일에 쓰기
-        echo "${{ secrets.DATABASE }}" >> ./application-database.yaml
+        echo "${{ secrets.DATABASE_URL }}" >> ./application-database.yaml
+        echo "${{ secrets.DATABASE_USERNAME }}" >> ./application-database.yaml
+        echo "${{ secrets.DATABASE_ }}" >> ./application-database.yaml
       shell: bash
 
     - name: Gradle Caching

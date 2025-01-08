@@ -10,8 +10,13 @@ spring:
     defer-datasource-initialization: true
 
     datasource:
-      url: jdbc:h2:mem:testdb
+      url: ${DATABASE_URL}
+      username: ${DATABASE_USERNAME}
+      password: ${DATABASE_PASSWORD}
+      driver-class-name: com.mysql.cj.jdbc.Driver   # MySQL 드라이버 클래스 명시
+      type: com.zaxxer.hikari.HikariDataSource   # HikariCP 명시
+
 
     h2:
       console:
-        enabled: true
+        enabled: false
