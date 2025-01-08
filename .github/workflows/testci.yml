@@ -5,7 +5,7 @@ name: CI with Gradle
 # main 브랜치에 PR 이벤트가 발생하면 Workflow가 실행된다.
 # 브랜치 구분이 없으면 on: [pull_request]로 해주어도 된다.
 on:
-  pull_request:
+  push:
     branches: [ "main" ]
 
 # 테스트 결과 작성을 위해 쓰기권한 추가
