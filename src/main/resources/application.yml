@@ -4,10 +4,16 @@ spring:
     properties:
       hibernate:
         format_sql: true
+        ddl-auto: none
     defer-datasource-initialization: true
 
   datasource:
-    url: jdbc:h2:mem:testdb
+    url: **
+    username: **
+    password: **
+    driver-class-name: com.mysql.cj.jdbc.Driver   # MySQL 드라이버 클래스 추가
+    type: com.zaxxer.hikari.HikariDataSource   # HikariCP 명시
+
 
   h2:
     console:
