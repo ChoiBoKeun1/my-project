@@ -43,3 +43,4 @@ bin/
 
 # 민감한 정보
 application-database.yaml
+.env
