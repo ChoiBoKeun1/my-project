@@ -13,7 +13,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-public class MemberController {
+public class MemberApiController {
     private final MemberService memberService;
 
     @PostMapping("/api/members")
@@ -41,5 +41,13 @@ public class MemberController {
 
         return ResponseEntity.ok()
                 .body(new MemberResponse(member));
+    }
+
+    @DeleteMapping("/api/members/{id}")
+    public ResponseEntity<Void> deleteMember(@PathVariable("id") Long id) {
+        memberService.delete(id);
+
+        return ResponseEntity.ok()
+                .build();
     }
 }

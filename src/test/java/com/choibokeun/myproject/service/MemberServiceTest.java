@@ -92,4 +92,33 @@ class MemberServiceTest {
             memberService.findById(id);
         });
     }
+
+    @DisplayName("delete(): 회원을 삭제한다")
+    @Test
+    void delete() {
+        // given
+        Member savedMember = memberRepository.save(Member.builder()
+                .name("testName")
+                .content("content")
+                .build());
+
+        // when
+        memberService.delete(savedMember.getId());
+
+        // then
+        List<Member> members = memberRepository.findAll();
+        assertThat(members).isEmpty();
+    }
+
+    @DisplayName("delete(): 존재하지 않는 회원을 삭제할 때 예외가 발생한다")
+    @Test
+    void delete_fail() {
+        // given
+        Long id = 1L;
+
+        // when & then
+        assertThrows(IllegalArgumentException.class, () -> {
+            memberService.delete(id);
+        });
+    }
 }

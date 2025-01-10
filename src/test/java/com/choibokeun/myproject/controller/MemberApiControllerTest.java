@@ -21,6 +21,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -100,6 +101,23 @@ class MemberApiControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name").value(savedMember.getName()))
                 .andExpect(jsonPath("$.content").value(savedMember.getContent()));
+    }
+
+    @DisplayName("deleteMember(): member 삭제에 성공한다")
+    @Test
+    public void deleteMember() throws Exception {
+        // given
+        final String url = "/api/members/{id}";
+        Member savedMember = createDefaultMember();
+
+        // when
+        mockMvc.perform(delete(url, savedMember.getId()))
+                .andExpect(status().isOk());
+
+        // then
+        List<Member> members = memberRepository.findAll();
+
+        assertThat(members).isEmpty();
     }
 
     private Member createDefaultMember() {
