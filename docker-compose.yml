@@ -3,7 +3,7 @@ version: '2.31.0'
 services:
   database:
     container_name: mysql-db
-    image: mysql:8.0.22
+    image: mysql:8.0.39
     restart: unless-stopped
     environment:
       MYSQL_DATABASE: test_db
