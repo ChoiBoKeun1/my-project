@@ -27,6 +27,8 @@ public class MemberService {
     }
 
     public void delete(Long id) {
-        memberRepository.deleteById(id);
+        Member member = memberRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("not found : " + id));
+        memberRepository.delete(member);
     }
 }
