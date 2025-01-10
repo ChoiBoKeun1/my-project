@@ -1,27 +1,27 @@
 version: '2.31.0'
 
 services:
-  database:
-    container_name: mysql-db
-    image: mysql:8.0.39
-    restart: unless-stopped
-    environment:
-      MYSQL_DATABASE: test_db
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_ROOT_HOST: '%'
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      TZ: 'Asia/Seoul'
-    ports:
-      - "13306:3306"
-    volumes:
-      - ./mysql/conf.d:/etc/mysql/conf.d
-    command:
-      - "mysqld"
-      - "--character-set-server=utf8mb4"
-      - "--collation-server=utf8mb4_unicode_ci"
-    networks:
-      - preon_net
+#  database:
+#    container_name: mysql-db
+#    image: mysql:8.0.39
+#    restart: unless-stopped
+#    environment:
+#      MYSQL_DATABASE: test_db
+#      MYSQL_USER: ${MYSQL_USER}
+#      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+#      MYSQL_ROOT_HOST: '%'
+#      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+#      TZ: 'Asia/Seoul'
+#    ports:
+#      - "13306:3306"
+#    volumes:
+#      - ./mysql/conf.d:/etc/mysql/conf.d
+#    command:
+#      - "mysqld"
+#      - "--character-set-server=utf8mb4"
+#      - "--collation-server=utf8mb4_unicode_ci"
+#    networks:
+#      - preon_net
 
   application:
     container_name: spring-app
