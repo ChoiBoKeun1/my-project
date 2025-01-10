@@ -89,7 +89,17 @@ jobs:
           source: "Dockerfile"
           target: "/home/ubuntu/my-project/"
 
-      # 11. Docker Compose를 이용해 배포
+      # 11. 빌드된 .jar 파일 EC2 서버로 전송
+      - name: 빌드된 .jar 파일 전송
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_PRIVATE_KEY }}
+          source: "build/libs/*.jar"
+          target: "/home/ubuntu/my-project/"
+
+      # 12. Docker Compose를 이용해 배포
       - name: Docker Compose로 배포
         uses: appleboy/ssh-action@master
         with:
